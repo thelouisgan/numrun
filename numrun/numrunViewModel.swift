@@ -2,7 +2,7 @@ import Foundation
 import FirebaseDatabase
 
 class numrunViewModel: ObservableObject {
-    private var ref = Database.database().reference()
+    var ref = Database.database().reference()
     
     // Function to fetch data from Firebase
     func fetchData(completion: @escaping ([numrunDTO]) -> Void) {
@@ -30,6 +30,11 @@ class numrunViewModel: ObservableObject {
     func updateUserAnswer(_ answer: String) {
         ref.child("userAnswer").setValue(answer)
     }
+    
+    // Function to update correct answer in Firebase
+        func updateCorrectAnswer(_ answer: Int) {
+            ref.child("answer").setValue(answer)
+        }
     
     // Function to increment score in Firebase
     func incrementScore() {

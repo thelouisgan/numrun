@@ -25,6 +25,15 @@ struct ContentView: View {
             Text(feedback)
                 .padding()
         }
+        .onAppear {
+            // Retrieve correct answer from Firebase (if needed)
+            viewModel.ref.child("answer").observeSingleEvent(of: .value) { snapshot in
+                if let correctAnswer = snapshot.value as? Int {
+                    // Use correctAnswer as needed
+                    print("Correct Answer:", correctAnswer)
+                }
+            }
+        }
     }
     
     func submitAnswer() {
